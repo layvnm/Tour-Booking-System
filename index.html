@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sarawak Tour Package Booking System</title>
+
+    <!-- Google Fonts untuk Tipografi Moden -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- jQuery Mobile CSS & JS CDN -->
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+    <style>
+
+        /* Tetapan Font Global */
+        body, input, select, textarea, button, .ui-btn {
+            font-family: 'Poppins', sans-serif !important;
+        }
+        /* Page Background Style */
+        .ui-page {
+            background-image: url('images/kuc.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* Blur Overlay Filter */
+        .blur-overlay {
+            width: 100%;
+            height: 100%;
+            min-height: 100vh;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Responsive Card Grid Layout */
+        .card-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            width: 100%;
+            max-width: 320px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 12px 15px;
+        }
+
+        .card-content h3 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+
+        .card-actions {
+            padding: 10px 15px;
+            border-top: 1px solid #eee;
+            background: #fdfdfd;
+            position: relative;
+        }
+
+        /* Info Box & Errors */
+        .info-detail {
+            display: none; /* Hidden by default, displayed via JavaScript */
+            padding: 8px 10px;
+            margin-top: 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        .tooltip-box {
+            background-color: #e3f2fd;
+            color: #0d47a1;
+            border: 1px solid #bbdefb;
+        }
+
+        .popover-box {
+            background-color: #e8f5e9;
+            color: #1b5e20;
+            border: 1px solid #c8e6c9;
+        }
+
+        .error-msg {
+            display: none; /* Hidden by default */
+            color: #d32f2f;
+            font-size: 12px;
+            margin-top: -5px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================= 1. HOME PAGE ================= -->
+    <div data-role="page" id="home">
+        <div data-role="header" data-position="fixed">
+            <h1>Sarawak Tourism</h1>
+        </div>
+
+        <div data-role="main" class="ui-content blur-overlay" style="text-align: center; padding: 20px 10px;">
+            <h2>Welcome to Sarawak Tour Packages</h2>
+            <img src="images/srwk.jpg" alt="Sarawak" class="card-img" style="max-width: 400px; border-radius: 8px;">
+            <p>Explore the natural beauty, historic caves, and diverse cultures of Sarawak.</p>
+            <a href="#packages" data-transition="slide" class="ui-btn ui-btn-b">View Tour Packages</a>
+        </div>
+
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#home" data-icon="home" class="ui-btn-active">Home</a></li>
+                    <li><a href="#packages" data-transition="slide" data-icon="grid">Tour Packages</a></li>
+                    <li><a href="#booking" data-transition="slide" data-icon="edit">Booking</a></li>
+                    <li><a href="#contact" data-transition="slide" data-icon="mail">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= 2. TOUR PACKAGES PAGE ================= -->
+    <div data-role="page" id="packages">
+        <div data-role="header" data-position="fixed">
+            <a href="#home" data-transition="slide" data-direction="reverse" class="ui-btn ui-icon-back ui-btn-icon-notext">Back</a>
+            <h1>Tour Packages</h1>
+        </div>
+
+        <div data-role="main" class="ui-content blur-overlay">
+            <div class="card-grid">
+
+                <!-- Card 1 -->
+                <div class="card">
+                    <div>
+                        <img src="images/bako.jpg" alt="Bako National Park" class="card-img">
+                        <div class="card-content">
+                            <h3>1. Bako National Park Tour</h3>
+                            <p>Enjoy natural beauty and spot proboscis monkeys at Bako National Park.</p>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button type="button" class="btn-tooltip ui-btn ui-btn-inline ui-mini">Price & Duration</button>
+                        <button type="button" class="btn-popover ui-btn ui-btn-inline ui-mini ui-btn-b">More Info</button>
+                        <div class="info-detail tooltip-box">Duration: 2 Days 1 Night | Price: RM 300 / person</div>
+                        <div class="info-detail popover-box">Includes: Tour guide, boat fare, lunch, and entrance ticket.</div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="card">
+                    <div>
+                        <img src="images/mulu.jpg" alt="Mulu Caves" class="card-img">
+                        <div class="card-content">
+                            <h3>2. Mulu Caves Adventure</h3>
+                            <p>Explore world-renowned limestone caves and witness the spectacular bat exodus phenomenon.</p>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button type="button" class="btn-tooltip ui-btn ui-btn-inline ui-mini">Price & Duration</button>
+                        <button type="button" class="btn-popover ui-btn ui-btn-inline ui-mini ui-btn-b">More Info</button>
+                        <div class="info-detail tooltip-box">Duration: 3 Days 2 Nights | Price: RM 750 / person</div>
+                        <div class="info-detail popover-box">Includes: Accommodation, boat transport, and cave entrance permits.</div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="card">
+                    <div>
+                        <img src="images/scv.jpg" alt="Sarawak Cultural Village" class="card-img">
+                        <div class="card-content">
+                            <h3>3. Sarawak Cultural Village</h3>
+                            <p>Experience the rich arts, culture, and traditional houses of Sarawak's ethnic groups in one place.</p>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button type="button" class="btn-tooltip ui-btn ui-btn-inline ui-mini">Price & Duration</button>
+                        <button type="button" class="btn-popover ui-btn ui-btn-inline ui-mini ui-btn-b">More Info</button>
+                        <div class="info-detail tooltip-box">Duration: 1 Day | Price: RM 150 / person</div>
+                        <div class="info-detail popover-box">Includes: Cultural performances, entrance ticket, and lunch.</div>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="card">
+                    <div>
+                        <img src="images/semenggoh.jpg" alt="Semenggoh Wildlife Centre" class="card-img">
+                        <div class="card-content">
+                            <h3>4. Semenggoh Wildlife Centre</h3>
+                            <p>An Orangutan Rehabilitation Centre in a forest reserve offering the experience to observe orangutans up close.</p>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button type="button" class="btn-tooltip ui-btn ui-btn-inline ui-mini">Price & Duration</button>
+                        <button type="button" class="btn-popover ui-btn ui-btn-inline ui-mini ui-btn-b">More Info</button>
+                        <div class="info-detail tooltip-box">Duration: 2 Days 1 Night | Price: RM 520 / person</div>
+                        <div class="info-detail popover-box">Includes: Entrance ticket and lunch.</div>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="card">
+                    <div>
+                        <img src="images/buaya.jpg" alt="Jong's Crocodile Farm" class="card-img">
+                        <div class="card-content">
+                            <h3>5. Jong's Crocodile Farm</h3>
+                            <p>Witness live crocodile feeding demonstrations daily in saltwater crocodile ponds.</p>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button type="button" class="btn-tooltip ui-btn ui-btn-inline ui-mini">Price & Duration</button>
+                        <button type="button" class="btn-popover ui-btn ui-btn-inline ui-mini ui-btn-b">More Info</button>
+                        <div class="info-detail tooltip-box">Ticket Price: Adult RM 30</div>
+                        <div class="info-detail popover-box">Includes: Crocodile and arapaima feeding show, plus entrance ticket.</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <a href="#booking" data-transition="slide" class="ui-btn ui-btn-b" style="margin-top: 20px;">Proceed to Booking</a>
+        </div>
+
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#home" data-transition="slide" data-direction="reverse" data-icon="home">Home</a></li>
+                    <li><a href="#packages" data-icon="grid" class="ui-btn-active">Tour Packages</a></li>
+                    <li><a href="#booking" data-transition="slide" data-icon="edit">Booking</a></li>
+                    <li><a href="#contact" data-transition="slide" data-icon="mail">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= 3. BOOKING PAGE ================= -->
+    <div data-role="page" id="booking">
+        <div data-role="header" data-position="fixed">
+            <a href="#packages" data-transition="slide" data-direction="reverse" class="ui-btn ui-icon-back ui-btn-icon-notext">Back</a>
+            <h1>Booking Form</h1>
+        </div>
+
+        <div data-role="main" class="ui-content blur-overlay">
+            <form id="bookingForm">
+                <label for="book-nama">Full Name:</label>
+                <input type="text" id="book-nama" placeholder="Enter full name">
+                <div id="err-book-nama" class="error-msg">Please enter your name!</div>
+
+                <label for="book-phone">Phone Number:</label>
+                <input type="text" id="book-phone" placeholder="Example: 0123456789">
+                <div id="err-book-phone" class="error-msg">Please enter a phone number!</div>
+
+                <label for="book-email">Email:</label>
+                <input type="email" id="book-email" placeholder="Example: name@gmail.com">
+                <div id="err-book-email" class="error-msg">Please enter a valid email!</div>
+
+                <label for="book-tarikh">Tour Date:</label>
+                <input type="date" id="book-tarikh">
+                <div id="err-book-tarikh" class="error-msg">Please select a date!</div>
+
+                <label for="book-peserta">Number of Participants:</label>
+                <input type="number" id="book-peserta" min="1" value="1">
+
+                <label for="book-pakej">Select Package:</label>
+                <select id="book-pakej">
+                    <option value="">-- Select Package --</option>
+                    <option value="bako">Bako National Park</option>
+                    <option value="mulu">Mulu Caves Adventure</option>
+                    <option value="cultural">Sarawak Cultural Village</option>
+                    <option value="crocodile">Jong's Crocodile Farm</option>
+                    <option value="semenggoh">Semenggoh Wildlife Care</option>
+                </select>
+                <div id="err-book-pakej" class="error-msg">Please select a package!</div>
+
+                <button type="button" onclick="hantarBooking()" class="ui-btn ui-btn-b" style="margin-top: 15px;">Submit Booking</button>
+            </form>
+        </div>
+
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#home" data-transition="slide" data-direction="reverse" data-icon="home">Home</a></li>
+                    <li><a href="#packages" data-transition="slide" data-direction="reverse" data-icon="grid">Tour Packages</a></li>
+                    <li><a href="#booking" data-icon="edit" class="ui-btn-active">Booking</a></li>
+                    <li><a href="#contact" data-transition="slide" data-icon="mail">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= 4. CONTACT US PAGE ================= -->
+    <div data-role="page" id="contact">
+        <div data-role="header" data-position="fixed">
+            <a href="#home" data-transition="slide" data-direction="reverse" class="ui-btn ui-icon-back ui-btn-icon-notext">Back</a>
+            <h1>Contact Us</h1>
+        </div>
+
+        <div data-role="main" class="ui-content blur-overlay">
+            <h2>Contact Us</h2>
+            <p>Please fill in the form below to send us any inquiries or messages.</p>
+
+            <form id="contactForm">
+                <label for="contact-nama">Name:</label>
+                <input type="text" id="contact-nama" placeholder="Your name">
+                <div id="err-contact-nama" class="error-msg">Name is required!</div>
+
+                <label for="contact-email">Email:</label>
+                <input type="email" id="contact-email" placeholder="Your email">
+                <div id="err-contact-email" class="error-msg">Invalid email address!</div>
+
+                <label for="contact-mesej">Message:</label>
+                <textarea id="contact-mesej" placeholder="Write your message..."></textarea>
+                <div id="err-contact-mesej" class="error-msg">Please enter a message!</div>
+
+                <label style="font-size: 13px; margin-top: 15px;">
+                    <input type="checkbox" id="ethical-consent">
+                    I agree to allow this information to be used responsibly in accordance with the privacy policy.
+                </label>
+                <div id="err-consent" class="error-msg">You must check this consent box!</div>
+
+                <button type="button" onclick="hantarContact()" class="ui-btn ui-btn-b" style="margin-top: 15px;">Send Message</button>
+            </form>
+        </div>
+
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#home" data-transition="slide" data-direction="reverse" data-icon="home">Home</a></li>
+                    <li><a href="#packages" data-transition="slide" data-direction="reverse" data-icon="grid">Tour Packages</a></li>
+                    <li><a href="#booking" data-transition="slide" data-direction="reverse" data-icon="edit">Booking</a></li>
+                    <li><a href="#contact" data-icon="mail" class="ui-btn-active">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Original JavaScript File -->
+    <script src="script.js"></script>
+
+    <!-- Additional JavaScript Snippet for Card Button Functionality -->
+    <script>
+        $(document).on("pagecreate", function() {
+            $(".btn-tooltip").on("click", function() {
+                $(this).siblings(".tooltip-box").slideToggle(200);
+            });
+            $(".btn-popover").on("click", function() {
+                $(this).siblings(".popover-box").slideToggle(200);
+            });
+        });
+    </script>
+</body>
+</html>
